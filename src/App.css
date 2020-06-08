@@ -1,0 +1,8 @@
+body {
+  /* impotatn is needed otherwise this not gona work. bootstrap will override it */
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.text-lsanted {
+  font-family: 'Courgette', cursive;
+}
