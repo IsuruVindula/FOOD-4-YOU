@@ -3,6 +3,8 @@ import React,{ Component } from "react";
 export default class Recipe extends Component{
     render(){
         const { recipe_id, image_url, title, publisher, source_url} = this.props.recipe;
+        const{handleDetails} = this.props;
+
        return(
         <React.Fragment>
             <div className="col-10 mx-auto col-md-6 col-lg-4 my-3">

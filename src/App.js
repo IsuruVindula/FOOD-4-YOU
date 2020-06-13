@@ -7,11 +7,12 @@ import RecipeDetails from './Components/RecipeDetails';
 
 
 class App extends Component{
-  
+
   state = {
     recipes: recipes,
     url: "copy the api url",
-    details_id: 3538 
+    details_id: 78965,
+    pageIndex: 1
   }
 
   // async getRecipes(){ //when we click the page , its needs some time to load. So thats why we use async function
@@ -28,12 +29,35 @@ class App extends Component{
   //   this.getRecipes();
   // }
 
-  render() {
+  displayPage= (index) => {
+    switch(index){
+      default:
+      case 1:
+        return(<RecipeList recipes={this.state.recipes} handleDetails={this.handleDetails}/>)
+      case 0:
+        return(<RecipeDetails id={this.state.details_id} handleIndex={this.handleIndex}/>)
+    }
+  };
 
+  // we use index to chage the rendering content
+  handleIndex = (index) => {
+    this.setState({
+      pageIndex: index
+    })
+  }
+
+  // we pass this method to recipeList
+  handleDetails = (index, id) => {
+    this.setState({
+      index: index,
+      details_id: id
+    })
+  }
+
+  render() {
     return(
       <React.Fragment>
-        {/* <RecipeList recipes={this.state.recipes}/> */}
-        <RecipeDetails id={this.state.details_id}/>
+        {this.displayPage(this.state.pageIndex)}
       </React.Fragment>
     )
   }

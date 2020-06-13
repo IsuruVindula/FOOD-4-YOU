@@ -8,17 +8,16 @@ constructor(props){
 
     this.state = {
         recipe: recipe,
-        url: 'copy the api url id= {this.props.id }'
+        url: 'copy the api url id = ' + this.props.id 
     };
 }
-
 
 
   async componentDidMount(){ //this is a build in method. Executes when app component mount
       try{
       const data = await fetch(this.state.url).then((value) =>{console.log(value);}, (error)=>{console.log(error);})
-      const jasonData = await data.json();
-      this.setState({recipes:jasonData.recipes})
+      const jasonData = await data.json(); 
+      this.setState({recipe:jasonData.recipe})
     }catch(error){
       console.error(error);
     }
@@ -26,15 +25,17 @@ constructor(props){
 
     render(){
         const {image_url, publisher, publisher_url, source_url, title, ingredients} = this.state.recipe;
+        const{handleIndex} = this.props;
 
         return(
         <React.Fragment>
             <div className="container">
             <div className="row">
             <div className="col-10 mx-auto col-md-6 my-3">
-            <button type="button" className="btn btn-warning mb-5 text-capitalized">back to recipe list</button>
+            <button type="button" className="btn btn-warning mb-5 text-capitalized" onClick={()=>handleIndex(1)}>back to recipe list</button>
             <img src={image_url} className="d-block w-100" alt="recipe"></img>
             </div>
+
             {/* details */}
             <div className="col-10 mx-auto col-md-6 my-3">
             <h6 className="text-upppercase">{title}</h6>
