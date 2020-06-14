@@ -12,7 +12,8 @@ class App extends Component{
     recipes: recipes,
     url: "copy the api url",
     details_id: 78965,
-    pageIndex: 1
+    pageIndex: 1,
+    search: ''
   }
 
   // async getRecipes(){ //when we click the page , its needs some time to load. So thats why we use async function
@@ -33,7 +34,7 @@ class App extends Component{
     switch(index){
       default:
       case 1:
-        return(<RecipeList recipes={this.state.recipes} handleDetails={this.handleDetails}/>)
+        return(<RecipeList recipes={this.state.recipes} handleDetails={this.handleDetails} value={this.state.search} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />)
       case 0:
         return(<RecipeDetails id={this.state.details_id} handleIndex={this.handleIndex}/>)
     }
@@ -44,15 +45,26 @@ class App extends Component{
     this.setState({
       pageIndex: index
     })
-  }
+  };
 
   // we pass this method to recipeList
   handleDetails = (index, id) => {
     this.setState({
-      index: index,
+      pageIndex: index,
       details_id: id
     })
+  };
+
+  handleChange = (e)=>{
+    console.log("hello from habdle change");
+
   }
+
+  handleSubmit = (e)=> {
+    e.preventDefault();
+    console.log("Hello from handle submit");
+  }
+
 
   render() {
     return(
