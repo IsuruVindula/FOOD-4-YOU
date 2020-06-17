@@ -5,7 +5,7 @@ import ReciepResearch from "./RecipeSearch";
 
 export default class RecipeList extends Component{
     render(){
-        const {recipes, handleDetails, value, handleChange, handleSubmit} = this.props;
+        const {recipes, handleDetails, value, error, handleChange, handleSubmit} = this.props;
 
         return(
        <React.Fragment>
@@ -20,6 +20,8 @@ export default class RecipeList extends Component{
                     {/* end of title */}
                     <div className="row">
                     {
+                        error? <h1 className="tex-danger text-center"> {error} </h1> :
+
                         recipes.map( (recipe)=>{
                             return(
                                 <Recipe key={recipe.recipe_id} recipe={recipe} handleDetails={()=>handleDetails(0, recipe.recipe_id)}/>
